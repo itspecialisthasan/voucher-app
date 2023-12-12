@@ -2,7 +2,7 @@ module.exports = ( sequelizeObj, DataTypes ) =>
 {
 
     const voucher = sequelizeObj.define( "voucher", {
-        voucherData: {
+        voucherDate: {
             type: DataTypes.DATEONLY,
         },
         voucherCurrency: {

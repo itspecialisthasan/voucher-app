@@ -3,13 +3,13 @@ const cors = require( 'cors' );
 
 const app = express();
 
-const corsOptions = {
-    origin: "https://localhost:8081"
-}
+// const corsOptions = {
+//     origin: "http://localhost:5173/"
+// }
 
 //middleware
 
-app.use( cors( corsOptions ) )
+app.use( cors() )
 app.use( express.json() )
 app.use( express.urlencoded( { extended: true } ) )
 
