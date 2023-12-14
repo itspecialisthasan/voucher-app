@@ -3,22 +3,52 @@ import "./Login.css";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 
+import Validation from "./LoginValidation";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Login() {
-  const [loginUsername, setLoginUsername] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  // const [loginUsername, setLoginUsername] = useState("");
+  // const [loginPassword, setLoginPassword] = useState("");
 
-  //   useEffect(() => {
-  //     loginUser();
-  //   }, []);
+  const navigate = useNavigate();
 
-  const loginUser = () => {
+  const [errors, setErrors] = useState("");
+
+  const [values, setValues] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleInput = (e) => {
+    e.preventDefault();
+    setValues((prev) => ({ ...prev, [e.target.name]: [e.target.value] }));
+  };
+
+  const loginUser = (e) => {
+    e.preventDefault();
+    setErrors(Validation(values));
     axios
-      .post("http://localhost:4000/api/login/addUser", {
-        LoginUsername: loginUsername,
-        LoginPassword: loginPassword,
-      })
+      .post("http://localhost:4000/api/login/login", values)
       .then((response) => {
-        console.log(response);
+        if (response.data === "success") {
+          if (values.username === "" || values.password === "") {
+            console.log(response.data);
+          } else {
+            alert(response.data);
+            navigate("/dashboard");
+          }
+        }
+
+        if (response.data === "user not exists") {
+          navigate("/");
+          alert(response.data);
+          console.log(response.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       });
 
     // axios.get("http://localhost:4000/api/login/getAllUser").then((response) => {
@@ -41,17 +71,21 @@ function Login() {
                           Login
                         </h1>
                       </div>
-                      <form action="" className="user">
+                      <form action="" className="user" onSubmit={loginUser}>
                         <div className="form-group p-2">
                           <input
                             type="text"
                             className="form-control p-2"
                             id="exampleInputEmail"
                             placeholder="Username"
-                            onChange={(e) => {
-                              setLoginUsername(e.target.value);
-                            }}
+                            name="username"
+                            onChange={handleInput}
                           />
+                          {errors.username && (
+                            <span className="text-danger">
+                              {errors.username}
+                            </span>
+                          )}
                         </div>
                         <div className="form-group p-2">
                           <input
@@ -59,17 +93,20 @@ function Login() {
                             className="form-control p-2"
                             id="exampleInputPassword"
                             placeholder="Password"
-                            onChange={(e) => {
-                              setLoginPassword(e.target.value);
-                            }}
+                            name="password"
+                            onChange={handleInput}
                           />
+                          {errors.password && (
+                            <span className="text-danger">
+                              {errors.password}
+                            </span>
+                          )}
                         </div>
 
                         <div className="form-group p-2">
                           <button
                             type="submit"
                             className="btn btn-primary form-control p-2"
-                            onClick={loginUser()}
                           >
                             Login
                           </button>

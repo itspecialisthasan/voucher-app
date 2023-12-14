@@ -16,10 +16,12 @@ app.use( express.urlencoded( { extended: true } ) )
 //routing
 
 const voucherRouter = require( './routes/voucherRoute.js' );
-const loginRouter = require( './routes/loginRoute.js' );
+const loginRouter = require( './routes/authRoute.js' );
+const registerRouter = require( './routes/authRegisterRoute.js' )
 
 app.use( '/api/voucher', voucherRouter )
 app.use( '/api/login', loginRouter )
+app.use( '/api/register', registerRouter )
 
 //testing
 

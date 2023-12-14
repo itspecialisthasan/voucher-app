@@ -19,10 +19,10 @@ const sequelizeObj = new Sequelize(
 
 sequelizeObj.authenticate().then( () =>
 {
-    console.log( "connected" )
+    console.log( "Database is connected" )
 } ).catch( ( err ) =>
 {
-    console.log( err );
+    console.log( "Database is not connected.." + err );
 } )
 
 const db = {}
@@ -31,6 +31,7 @@ db.Sequelize = Sequelize
 db.sequelize = sequelizeObj
 
 db.login = require( './loginModel.js' )( sequelizeObj, DataTypes )
+db.register = require( './registerModel.js' )( sequelizeObj, DataTypes )
 db.voucher = require( './voucherModel.js' )( sequelizeObj, DataTypes )
 
 db.sequelize.sync( { force: false } )
