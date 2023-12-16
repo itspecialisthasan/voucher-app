@@ -4,6 +4,7 @@ import "./Sidebar.css";
 import { Link } from "react-router-dom";
 
 function SidebarItem() {
+  const activeLink = "";
   return (
     <div className="sidebarItem">
       <div className="sidebarItem-header">
@@ -14,13 +15,18 @@ function SidebarItem() {
         <div className="sideMenuItem_1">
           <span>
             <i className="bi bi-house-fill"></i>
-            Home
+            <Link to={""}>Home</Link>
           </span>
         </div>
         <div className="sideMenuItem_2">
           <span>
             <i className="bi bi-journal-medical"></i>
-            Voucher
+            <Link
+              to={"voucher"}
+              className="{({isActive})=> isActive ? activeLink : normalLink}"
+            >
+              Voucher
+            </Link>
           </span>
         </div>
       </div>

@@ -27,7 +27,7 @@ const loginHandler = async ( req, res ) =>
             return res.json( "user not exists" )
         }
 
-        let pwdMatch = bcrypt.compare( sendPassword, checkUser.password )
+        let pwdMatch = bcrypt.compare( '' + sendPassword, checkUser.password )
 
         if ( !pwdMatch )
         {
