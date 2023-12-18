@@ -61,8 +61,8 @@ function Login() {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-6">
-            <div className="card shadow-sm my-5">
-              <div className="card-body p-0">
+            <div className="card shadow-sm">
+              <div className="card-body">
                 <div className="row justify-content-center">
                   <div className="col-lg-8">
                     <div className="login-form">

@@ -8,16 +8,15 @@
 }
 
 .login-form {
-  padding: 3rem 2rem !important;
-}
-
-.bg-login-image {
-  background-position: center;
-  background-size: cover;
+  padding: 2rem 1rem !important;
 }
 
 .login-heading {
   font-size: 2.5rem;
   font-weight: bold;
   color: #999087;
+}
+
+.card {
+  height: 100% !important;
 }

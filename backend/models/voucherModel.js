@@ -9,7 +9,7 @@ module.exports = ( sequelizeObj, DataTypes ) =>
             type: DataTypes.STRING
         },
         exchangeRate: {
-            type: DataTypes.INTEGER
+            type: DataTypes.STRING
         },
         narration: {
             type: DataTypes.STRING
@@ -17,11 +17,9 @@ module.exports = ( sequelizeObj, DataTypes ) =>
         voucherType: {
             type: DataTypes.STRING
         },
-        voucherAccount: {
-            type: DataTypes.STRING
-        },
+
         voucherPrice: {
-            type: DataTypes.INTEGER
+            type: DataTypes.STRING
         }
     } )
 

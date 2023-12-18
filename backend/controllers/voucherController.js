@@ -9,15 +9,16 @@ const Login = db.login;
 
 const postVoucher = async ( req, res ) =>
 {
-    let info = {
-        voucherDate: req.body.voucherDate,
-        voucherCurrency: req.body.voucherCurrency,
-        exchangeRate: req.body.exchangeRate,
-        narration: req.body.narration,
-        voucherType: req.body.voucherType,
-        voucherAccount: req.body.voucherAccount,
-        voucherPrice: req.body.voucherPrice
-    }
+    let info = [
+        {
+            voucherDate: req.body.voucherDate,
+            voucherCurrency: [ req.body.voucherCurrency ],
+            exchangeRate: req.body.exchangeRate,
+            narration: req.body.narration,
+            voucherType: [ req.body.voucherType ],
+            voucherPrice: req.body.voucherPrice
+        }
+    ]
 
     let createvoucher = await Voucher.create( info );
     res.status( 200 ).send( createvoucher )

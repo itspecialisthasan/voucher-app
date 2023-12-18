@@ -4,11 +4,6 @@
   color: rgba(70, 70, 70, 0.87);
 }
 
-html,
-body {
-  height: 100vh;
-}
-
 body {
   background-color: rgb(230, 219, 207);
   color: #fff;
